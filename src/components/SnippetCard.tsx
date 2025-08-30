@@ -36,7 +36,7 @@ export function SnippetCard({ snippet, onEdit, onDelete, onRun, onCopy }: Snippe
               </Badge>
               {!snippet.isActive && (
                 <Badge variant="outline" className="text-muted-foreground">
-                  Inactive
+                  Inativo
                 </Badge>
               )}
             </div>
@@ -89,11 +89,35 @@ export function SnippetCard({ snippet, onEdit, onDelete, onRun, onCopy }: Snippe
             <div className="flex items-center gap-1">
               <Clock className="w-3 h-3" />
               <span>
-                Updated {formatDistanceToNow(snippet.updatedAt, { addSuffix: true })}
+                Atualizado {formatDistanceToNow(snippet.updatedAt, { addSuffix: true, locale: { 
+                  formatDistance: (token: string, count: number) => {
+                    const formatDistanceLocale: Record<string, string> = {
+                      lessThanXSeconds: 'menos de {{count}} segundo{{count !== 1 ? "s" : ""}}',
+                      xSeconds: '{{count}} segundo{{count !== 1 ? "s" : ""}}',
+                      halfAMinute: 'meio minuto',
+                      lessThanXMinutes: 'menos de {{count}} minuto{{count !== 1 ? "s" : ""}}',
+                      xMinutes: '{{count}} minuto{{count !== 1 ? "s" : ""}}',
+                      aboutXHours: 'cerca de {{count}} hora{{count !== 1 ? "s" : ""}}',
+                      xHours: '{{count}} hora{{count !== 1 ? "s" : ""}}',
+                      xDays: '{{count}} dia{{count !== 1 ? "s" : ""}}',
+                      aboutXWeeks: 'cerca de {{count}} semana{{count !== 1 ? "s" : ""}}',
+                      xWeeks: '{{count}} semana{{count !== 1 ? "s" : ""}}',
+                      aboutXMonths: 'cerca de {{count}} mês{{count !== 1 ? "es" : ""}}',
+                      xMonths: '{{count}} mês{{count !== 1 ? "es" : ""}}',
+                      aboutXYears: 'cerca de {{count}} ano{{count !== 1 ? "s" : ""}}',
+                      xYears: '{{count}} ano{{count !== 1 ? "s" : ""}}',
+                      overXYears: 'mais de {{count}} ano{{count !== 1 ? "s" : ""}}',
+                      almostXYears: 'quase {{count}} ano{{count !== 1 ? "s" : ""}}',
+                    };
+                    
+                    const result = formatDistanceLocale[token] || token;
+                    return result.replace('{{count}}', String(count));
+                  }
+                } })}
               </span>
             </div>
             <div className="text-right">
-              <span className="font-medium">{snippet.content.length}</span> chars
+              <span className="font-medium">{snippet.content.length}</span> caracteres
             </div>
           </div>
         </div>

@@ -13,21 +13,21 @@ import { Snippet, Folder } from '@/types';
 const SAMPLE_FOLDERS: Folder[] = [
   {
     id: '1',
-    name: 'Email Templates',
+    name: 'Modelos de Email',
     color: '#ef4444',
     snippetCount: 3,
     createdAt: new Date('2024-01-15')
   },
   {
     id: '2',
-    name: 'Support Responses',
+    name: 'Respostas de Suporte',
     color: '#3b82f6',
     snippetCount: 2,
     createdAt: new Date('2024-01-10')
   },
   {
     id: '3',
-    name: 'Sales',
+    name: 'Vendas',
     color: '#10b981',
     snippetCount: 1,
     createdAt: new Date('2024-01-05')
@@ -37,9 +37,9 @@ const SAMPLE_FOLDERS: Folder[] = [
 const SAMPLE_SNIPPETS: Snippet[] = [
   {
     id: '1',
-    name: 'Professional Email Signature',
-    shortcut: '/sig',
-    content: 'Best regards,\n\n{formtext: name=fullName; label=Your Full Name; default=John Doe}\n{formtext: name=title; label=Job Title; default=Software Developer}\n{formtext: name=company; label=Company; default=Tech Corp}\n\nEmail: {formtext: name=email; label=Email; default=john@techcorp.com}\nPhone: {formtext: name=phone; label=Phone; default=+1 (555) 123-4567}',
+    name: 'Assinatura de Email Profissional',
+    shortcut: '/ass',
+    content: 'Atenciosamente,\n\n{formtext: name=nomeCompleto; label=Seu Nome Completo; default=João Silva}\n{formtext: name=cargo; label=Cargo; default=Desenvolvedor de Software}\n{formtext: name=empresa; label=Empresa; default=Tech Corp}\n\nEmail: {formtext: name=email; label=Email; default=joao@techcorp.com}\nTelefone: {formtext: name=telefone; label=Telefone; default=+55 (11) 99999-9999}',
     folderId: '1',
     createdAt: new Date('2024-01-20'),
     updatedAt: new Date('2024-01-22'),
@@ -47,9 +47,9 @@ const SAMPLE_SNIPPETS: Snippet[] = [
   },
   {
     id: '2',
-    name: 'Meeting Follow-up',
+    name: 'Follow-up de Reunião',
     shortcut: '/followup',
-    content: 'Hi {formtext: name=clientName; label=Client Name},\n\nThank you for taking the time to meet with me {formtext: name=meetingDate; label=Meeting Date; default=today}. As discussed, here are the key points:\n\n{formparagraph: name=keyPoints; label=Key Points}\n\n{formtoggle: name=includeNextSteps; label=Include Next Steps; truetext=Next steps:\n- {formparagraph: name=nextSteps; label=Next Steps}}\n\nPlease let me know if you have any questions.\n\nBest regards,\n{formtext: name=senderName; label=Your Name}',
+    content: 'Olá {formtext: name=nomeCliente; label=Nome do Cliente},\n\nObrigado por dedicar seu tempo para a reunião comigo {formtext: name=dataReuniao; label=Data da Reunião; default=hoje}. Como discutido, aqui estão os pontos principais:\n\n{formparagraph: name=pontosPrincipais; label=Pontos Principais}\n\n{formtoggle: name=incluirProximosPassos; label=Incluir Próximos Passos; truetext=Próximos passos:\n- {formparagraph: name=proximosPassos; label=Próximos Passos}}\n\nPor favor, me avise se tiver alguma dúvida.\n\nAtenciosamente,\n{formtext: name=nomeRemetente; label=Seu Nome}',
     folderId: '1',
     createdAt: new Date('2024-01-18'),
     updatedAt: new Date('2024-01-21'),
@@ -57,9 +57,9 @@ const SAMPLE_SNIPPETS: Snippet[] = [
   },
   {
     id: '3',
-    name: 'Support Ticket Response',
-    shortcut: '/support',
-    content: 'Hello {formtext: name=customerName; label=Customer Name},\n\nThank you for contacting our support team regarding {formtext: name=issueSubject; label=Issue Subject}.\n\n{formtoggle: name=issueResolved; label=Issue Resolved; truetext=Great news! I was able to resolve your issue. Here\'s what I did:\n\n{formparagraph: name=resolution; label=Resolution Details}; falsetext=I\'m currently investigating your issue and will get back to you within {formtext: name=responseTime; label=Response Time; default=24 hours} with an update.}\n\nIf you have any questions, please don\'t hesitate to reach out.\n\nBest regards,\n{formtext: name=supportAgent; label=Support Agent Name}\nSupport Team',
+    name: 'Resposta de Ticket de Suporte',
+    shortcut: '/suporte',
+    content: 'Olá {formtext: name=nomeCliente; label=Nome do Cliente},\n\nObrigado por entrar em contato com nossa equipe de suporte sobre {formtext: name=assuntoProblema; label=Assunto do Problema}.\n\n{formtoggle: name=problemaResolvido; label=Problema Resolvido; truetext=Ótimas notícias! Consegui resolver seu problema. Aqui está o que fiz:\n\n{formparagraph: name=detalhesResolucao; label=Detalhes da Resolução}; falsetext=Estou investigando seu problema e retornarei em até {formtext: name=tempoResposta; label=Tempo de Resposta; default=24 horas} com uma atualização.}\n\nSe tiver alguma pergunta, não hesite em entrar em contato.\n\nAtenciosamente,\n{formtext: name=agenteSuporte; label=Nome do Agente de Suporte}\nEquipe de Suporte',
     folderId: '2',
     createdAt: new Date('2024-01-16'),
     updatedAt: new Date('2024-01-20'),
@@ -67,9 +67,9 @@ const SAMPLE_SNIPPETS: Snippet[] = [
   },
   {
     id: '4',
-    name: 'Invoice Calculator',
-    shortcut: '/invoice',
-    content: 'Invoice Summary\n\nClient: {formtext: name=clientName; label=Client Name}\nProject: {formtext: name=projectName; label=Project Name}\n\nHours worked: {formtext: name=hours; label=Hours; default=40}\nHourly rate: ${formtext: name=rate; label=Hourly Rate; default=75}\n\nSubtotal: ${= hours * rate}\nTax ({formtext: name=taxRate; label=Tax Rate %; default=10}%): ${= (hours * rate) * (taxRate / 100)}\nTotal: ${= (hours * rate) + ((hours * rate) * (taxRate / 100))}\n\nPayment is due within 30 days of invoice date.',
+    name: 'Calculadora de Fatura',
+    shortcut: '/fatura',
+    content: 'Resumo da Fatura\n\nCliente: {formtext: name=nomeCliente; label=Nome do Cliente}\nProjeto: {formtext: name=nomeProjeto; label=Nome do Projeto}\n\nHoras trabalhadas: {formtext: name=horas; label=Horas; default=40}\nValor por hora: R$ {formtext: name=valorHora; label=Valor por Hora; default=150}\n\nSubtotal: R$ {= horas * valorHora}\nImpostos ({formtext: name=taxaImposto; label=Taxa de Imposto %; default=10}%): R$ {= (horas * valorHora) * (taxaImposto / 100)}\nTotal: R$ {= (horas * valorHora) + ((horas * valorHora) * (taxaImposto / 100))}\n\nO pagamento é devido em 30 dias a partir da data da fatura.',
     folderId: '3',
     createdAt: new Date('2024-01-14'),
     updatedAt: new Date('2024-01-19'),
@@ -77,9 +77,9 @@ const SAMPLE_SNIPPETS: Snippet[] = [
   },
   {
     id: '5',
-    name: 'Quick Greeting',
-    shortcut: '/hi',
-    content: 'Hello! How can I help you today?',
+    name: 'Saudação Rápida',
+    shortcut: '/oi',
+    content: 'Olá! Como posso ajudá-lo hoje?',
     folderId: null,
     createdAt: new Date('2024-01-12'),
     updatedAt: new Date('2024-01-12'),
@@ -129,8 +129,8 @@ const Index = () => {
           : s
       ));
       toast({
-        title: 'Snippet updated',
-        description: `${snippetData.name} has been updated successfully.`,
+        title: 'Snippet atualizado',
+        description: `${snippetData.name} foi atualizado com sucesso.`,
       });
     } else {
       // Create new snippet
@@ -142,8 +142,8 @@ const Index = () => {
       };
       setSnippets(prev => [newSnippet, ...prev]);
       toast({
-        title: 'Snippet created',
-        description: `${snippetData.name} has been created successfully.`,
+        title: 'Snippet criado',
+        description: `${snippetData.name} foi criado com sucesso.`,
       });
     }
     setIsEditorOpen(false);
@@ -154,8 +154,8 @@ const Index = () => {
     const snippet = snippets.find(s => s.id === snippetId);
     setSnippets(prev => prev.filter(s => s.id !== snippetId));
     toast({
-      title: 'Snippet deleted',
-      description: `${snippet?.name || 'Snippet'} has been deleted.`,
+      title: 'Snippet excluído',
+      description: `${snippet?.name || 'Snippet'} foi excluído.`,
     });
   };
 
@@ -168,20 +168,20 @@ const Index = () => {
     try {
       await navigator.clipboard.writeText(content);
       toast({
-        title: 'Copied!',
-        description: 'Content copied to clipboard',
+        title: 'Copiado!',
+        description: 'Conteúdo copiado para a área de transferência',
       });
     } catch (error) {
       toast({
-        title: 'Error',
-        description: 'Failed to copy content',
+        title: 'Erro',
+        description: 'Falha ao copiar conteúdo',
         variant: 'destructive',
       });
     }
   };
 
   const handleCreateFolder = () => {
-    const folderName = prompt('Enter folder name:');
+    const folderName = prompt('Digite o nome da pasta:');
     if (folderName) {
       const newFolder: Folder = {
         id: Math.random().toString(36).substr(2, 9),
@@ -192,8 +192,8 @@ const Index = () => {
       };
       setFolders(prev => [...prev, newFolder]);
       toast({
-        title: 'Folder created',
-        description: `${folderName} folder has been created.`,
+        title: 'Pasta criada',
+        description: `A pasta ${folderName} foi criada.`,
       });
     }
   };
@@ -228,12 +228,12 @@ const Index = () => {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h1 className="text-2xl font-bold text-foreground">
-                  {selectedFolderId === null ? 'All Snippets' :
-                   selectedFolderId === 'unorganized' ? 'Unorganized' :
+                  {selectedFolderId === null ? 'Todos os Snippets' :
+                   selectedFolderId === 'unorganized' ? 'Sem Organização' :
                    folders.find(f => f.id === selectedFolderId)?.name || 'Snippets'}
                 </h1>
                 <p className="text-muted-foreground">
-                  {filteredSnippets.length} snippet{filteredSnippets.length !== 1 ? 's' : ''} found
+                  {filteredSnippets.length} snippet{filteredSnippets.length !== 1 ? 's' : ''} encontrado{filteredSnippets.length !== 1 ? 's' : ''}
                 </p>
               </div>
               <Button 
@@ -241,7 +241,7 @@ const Index = () => {
                 className="bg-gradient-to-r from-primary to-primary-glow hover:opacity-90"
               >
                 <Plus className="w-4 h-4 mr-2" />
-                New Snippet
+                Novo Snippet
               </Button>
             </div>
           </div>
@@ -254,13 +254,13 @@ const Index = () => {
               <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-glow rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-glow">
                 <Plus className="w-8 h-8 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">No snippets found</h3>
+              <h3 className="text-lg font-semibold mb-2">Nenhum snippet encontrado</h3>
               <p className="text-muted-foreground mb-4">
-                {searchQuery ? 'Try adjusting your search terms' : 'Create your first snippet to get started'}
+                {searchQuery ? 'Tente ajustar seus termos de busca' : 'Crie seu primeiro snippet para começar'}
               </p>
               <Button onClick={handleCreateSnippet} className="bg-gradient-to-r from-primary to-primary-glow">
                 <Plus className="w-4 h-4 mr-2" />
-                Create Snippet
+                Criar Snippet
               </Button>
             </div>
           ) : (

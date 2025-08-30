@@ -79,18 +79,18 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-border">
           <h2 className="text-xl font-semibold">
-            {snippet ? 'Edit Snippet' : 'Create New Snippet'}
+            {snippet ? 'Editar Snippet' : 'Criar Novo Snippet'}
           </h2>
           <div className="flex items-center gap-2">
             {snippet && (
               <Button variant="outline" size="sm" onClick={handleTest} className="gap-2">
                 <Play className="w-4 h-4" />
-                Test
+                Testar
               </Button>
             )}
             <Button onClick={handleSave} size="sm" className="gap-2">
               <Save className="w-4 h-4" />
-              Save
+              Salvar
             </Button>
             <Button variant="ghost" size="sm" onClick={onClose}>
               <X className="w-4 h-4" />
@@ -105,19 +105,19 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
               {/* Basic Info */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Snippet Name</Label>
+                  <Label htmlFor="name">Nome do Snippet</Label>
                   <Input
                     id="name"
-                    placeholder="e.g., Email Signature"
+                    placeholder="ex: Assinatura de Email"
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="shortcut">Shortcut</Label>
+                  <Label htmlFor="shortcut">Atalho</Label>
                   <Input
                     id="shortcut"
-                    placeholder="e.g., /sig"
+                    placeholder="ex: /ass"
                     value={formData.shortcut}
                     onChange={(e) => setFormData(prev => ({ ...prev, shortcut: e.target.value }))}
                   />
@@ -126,7 +126,7 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="folder">Folder</Label>
+                  <Label htmlFor="folder">Pasta</Label>
                   <Select
                     value={formData.folderId || 'none'}
                     onValueChange={(value) => setFormData(prev => ({ 
@@ -135,13 +135,13 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
                     }))}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Select folder" />
+                      <SelectValue placeholder="Selecionar pasta" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="none">
                         <div className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full bg-muted-foreground" />
-                          No Folder
+                          Sem Pasta
                         </div>
                       </SelectItem>
                       {folders.map((folder) => (
@@ -166,7 +166,7 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
                       onCheckedChange={(checked) => setFormData(prev => ({ ...prev, isActive: checked }))}
                     />
                     <span className="text-sm text-muted-foreground">
-                      {formData.isActive ? 'Active' : 'Inactive'}
+                      {formData.isActive ? 'Ativo' : 'Inativo'}
                     </span>
                   </div>
                 </div>
@@ -174,10 +174,10 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
 
               {/* Content Editor */}
               <div className="space-y-2">
-                <Label htmlFor="content">Snippet Content</Label>
+                <Label htmlFor="content">Conteúdo do Snippet</Label>
                 <Textarea
                   id="content"
-                  placeholder="Enter your snippet content here..."
+                  placeholder="Digite o conteúdo do seu snippet aqui..."
                   value={formData.content}
                   onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
                   className="min-h-[200px] font-mono"
@@ -189,7 +189,7 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
                 <Alert>
                   <Info className="w-4 h-4" />
                   <AlertDescription>
-                    This snippet contains {parsedContent.fields.length} dynamic field(s) and {parsedContent.formulas.length} formula(s).
+                    Este snippet contém {parsedContent.fields.length} campo(s) dinâmico(s) e {parsedContent.formulas.length} fórmula(s).
                   </AlertDescription>
                 </Alert>
               )}
@@ -200,39 +200,39 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
           <div className="w-80 border-l border-border p-6 bg-muted/30 overflow-y-auto">
             <h3 className="font-semibold mb-4 flex items-center gap-2">
               <Info className="w-4 h-4" />
-              Help & Preview
+              Ajuda e Visualização
             </h3>
 
             <div className="space-y-4">
               {/* Syntax Help */}
               <Card className="bg-card/50">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-sm">Available Commands</CardTitle>
+                  <CardTitle className="text-sm">Comandos Disponíveis</CardTitle>
                 </CardHeader>
                 <CardContent className="text-xs space-y-2">
                   <div>
                     <Badge variant="outline" className="text-xs font-mono">
-                      {'{formtext: name=fieldName}'}
+                      {'{formtext: name=nomeCampo}'}
                     </Badge>
-                    <p className="text-muted-foreground mt-1">Single line text input</p>
+                    <p className="text-muted-foreground mt-1">Campo de texto de linha única</p>
                   </div>
                   <div>
                     <Badge variant="outline" className="text-xs font-mono">
-                      {'{formparagraph: name=fieldName}'}
+                      {'{formparagraph: name=nomeCampo}'}
                     </Badge>
-                    <p className="text-muted-foreground mt-1">Multi-line text input</p>
+                    <p className="text-muted-foreground mt-1">Campo de texto de múltiplas linhas</p>
                   </div>
                   <div>
                     <Badge variant="outline" className="text-xs font-mono">
-                      {'{formtoggle: name=fieldName}'}
+                      {'{formtoggle: name=nomeCampo}'}
                     </Badge>
-                    <p className="text-muted-foreground mt-1">Toggle switch</p>
+                    <p className="text-muted-foreground mt-1">Interruptor liga/desliga</p>
                   </div>
                   <div>
                     <Badge variant="outline" className="text-xs font-mono">
                       {'{= 2 + 2}'}
                     </Badge>
-                    <p className="text-muted-foreground mt-1">Math formula</p>
+                    <p className="text-muted-foreground mt-1">Fórmula matemática</p>
                   </div>
                 </CardContent>
               </Card>
@@ -241,7 +241,7 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
               {parsedContent.fields.length > 0 && (
                 <Card className="bg-card/50">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm">Dynamic Fields</CardTitle>
+                    <CardTitle className="text-sm">Campos Dinâmicos</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     {parsedContent.fields.map((field) => (
@@ -262,7 +262,7 @@ export function SnippetEditor({ snippet, folders, isOpen, onClose, onSave, onTes
               {parsedContent.formulas.length > 0 && (
                 <Card className="bg-card/50">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm">Formulas</CardTitle>
+                    <CardTitle className="text-sm">Fórmulas</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     {parsedContent.formulas.map((formula) => (

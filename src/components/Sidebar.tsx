@@ -45,7 +45,7 @@ export function Sidebar({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            placeholder="Search snippets..."
+            placeholder="Buscar snippets..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             className="pl-10"
@@ -61,7 +61,7 @@ export function Sidebar({
           size="sm"
         >
           <Plus className="w-4 h-4" />
-          New Snippet
+          Novo Snippet
         </Button>
         <Button 
           onClick={onCreateFolder}
@@ -70,7 +70,7 @@ export function Sidebar({
           size="sm"
         >
           <Folder className="w-4 h-4" />
-          New Folder
+          Nova Pasta
         </Button>
       </div>
 
@@ -90,7 +90,7 @@ export function Sidebar({
           >
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span className="font-medium">All Snippets</span>
+              <span className="font-medium">Todos os Snippets</span>
             </div>
             <Badge variant="secondary" className="text-xs">
               {allSnippetsCount}
@@ -109,7 +109,7 @@ export function Sidebar({
             >
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-muted-foreground" />
-                <span className="font-medium">Unorganized</span>
+                <span className="font-medium">Sem Organização</span>
               </div>
               <Badge variant="secondary" className="text-xs">
                 {unorganizedCount}
@@ -154,7 +154,7 @@ export function Sidebar({
       <div className="p-4 border-t border-border">
         <Button variant="ghost" size="sm" className="w-full justify-start gap-2">
           <Settings className="w-4 h-4" />
-          Settings
+          Configurações
         </Button>
       </div>
     </div>

@@ -56,14 +56,14 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
       await navigator.clipboard.writeText(output);
       setCopied(true);
       toast({
-        title: 'Copied!',
-        description: 'Snippet output copied to clipboard',
+        title: 'Copiado!',
+        description: 'Resultado do snippet copiado para a área de transferência',
       });
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       toast({
-        title: 'Error',
-        description: 'Failed to copy to clipboard',
+        title: 'Erro',
+        description: 'Falha ao copiar para a área de transferência',
         variant: 'destructive',
       });
     }
@@ -85,7 +85,7 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
             <div>
               <h2 className="text-xl font-semibold">{snippet.name}</h2>
               <p className="text-sm text-muted-foreground">
-                Shortcut: <Badge variant="secondary">{snippet.shortcut}</Badge>
+                Atalho: <Badge variant="secondary">{snippet.shortcut}</Badge>
               </p>
             </div>
           </div>
@@ -99,12 +99,12 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
           <div className="flex-1 p-6 overflow-y-auto">
             <div className="space-y-6">
               <div>
-                <h3 className="font-semibold mb-4">Fill in the fields</h3>
+                <h3 className="font-semibold mb-4">Preencha os campos</h3>
                 
                 {parsedContent.fields.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
-                    <p>This snippet has no dynamic fields.</p>
-                    <p className="text-sm mt-1">The output is ready to use!</p>
+                    <p>Este snippet não possui campos dinâmicos.</p>
+                    <p className="text-sm mt-1">O resultado está pronto para uso!</p>
                   </div>
                 ) : (
                   <div className="space-y-4">
@@ -120,7 +120,7 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
                             id={field.name}
                             value={fieldValues[field.name] || ''}
                             onChange={(e) => handleFieldChange(field.name, e.target.value)}
-                            placeholder={`Enter ${field.label || field.name}`}
+                            placeholder={`Digite ${field.label || field.name}`}
                           />
                         )}
                         
@@ -129,7 +129,7 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
                             id={field.name}
                             value={fieldValues[field.name] || ''}
                             onChange={(e) => handleFieldChange(field.name, e.target.value)}
-                            placeholder={`Enter ${field.label || field.name}`}
+                            placeholder={`Digite ${field.label || field.name}`}
                             rows={3}
                           />
                         )}
@@ -142,7 +142,7 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
                               onCheckedChange={(checked) => handleFieldChange(field.name, checked)}
                             />
                             <span className="text-sm text-muted-foreground">
-                              {fieldValues[field.name] ? 'Yes' : 'No'}
+                              {fieldValues[field.name] ? 'Sim' : 'Não'}
                             </span>
                           </div>
                         )}
@@ -158,7 +158,7 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
           <div className="w-96 border-l border-border p-6 bg-muted/30 overflow-y-auto">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold">Output</h3>
+                <h3 className="font-semibold">Resultado</h3>
                 <Button
                   variant="outline"
                   size="sm"
@@ -168,12 +168,12 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
                   {copied ? (
                     <>
                       <CheckCircle className="w-4 h-4" />
-                      Copied!
+                      Copiado!
                     </>
                   ) : (
                     <>
                       <Copy className="w-4 h-4" />
-                      Copy
+                      Copiar
                     </>
                   )}
                 </Button>
@@ -182,7 +182,7 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
               <Card>
                 <CardContent className="p-4">
                   <pre className="whitespace-pre-wrap font-mono text-sm bg-background p-3 rounded border min-h-[200px]">
-                    {output || 'Fill in the fields to see the output...'}
+                    {output || 'Preencha os campos para ver o resultado...'}
                   </pre>
                 </CardContent>
               </Card>
@@ -190,19 +190,19 @@ export function SnippetRunner({ snippet, isOpen, onClose }: SnippetRunnerProps) 
               {/* Statistics */}
               <Card className="bg-card/50">
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-sm">Statistics</CardTitle>
+                  <CardTitle className="text-sm">Estatísticas</CardTitle>
                 </CardHeader>
                 <CardContent className="text-xs space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Characters:</span>
+                    <span className="text-muted-foreground">Caracteres:</span>
                     <span className="font-medium">{output.length}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Words:</span>
+                    <span className="text-muted-foreground">Palavras:</span>
                     <span className="font-medium">{output.split(/\s+/).filter(w => w.length > 0).length}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Lines:</span>
+                    <span className="text-muted-foreground">Linhas:</span>
                     <span className="font-medium">{output.split('\n').length}</span>
                   </div>
                 </CardContent>
